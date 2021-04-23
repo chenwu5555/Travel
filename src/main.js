@@ -5,7 +5,7 @@ import fastClick from "fastclick"
 import store from './store'
 import "./assets/styles/reset.css"
 import "./assets/styles/border.css"
-
+import "./assets/styles/iconfont.css"
 Vue.config.productionTip = false
 
 // 移动端点击延迟处理
