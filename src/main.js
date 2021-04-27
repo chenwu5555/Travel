@@ -12,8 +12,8 @@ import "./assets/styles/reset.css"
 import "./assets/styles/border.css"
 // 引入iconfont-css图标样式
 import "./assets/styles/iconfont.css"
-// 引入轮播图swiper.css的样式
-import 'swiper/dist/css/swiper.css'
+// import style
+import "../node_modules/swiper/swiper.min.css"
 
 Vue.config.productionTip = false
 
