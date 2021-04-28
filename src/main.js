@@ -13,7 +13,7 @@ import "./assets/styles/border.css"
 // 引入iconfont-css图标样式
 import "./assets/styles/iconfont.css"
 // import style
-import "../node_modules/swiper/swiper.min.css"
+import "swiper/css/swiper.css"
 
 Vue.config.productionTip = false
 
