@@ -14,8 +14,13 @@ import "./assets/styles/border.css"
 import "./assets/styles/iconfont.css"
 // import style
 import "swiper/css/swiper.css"
+// 原型链上引入axios 
+import axios from"axios"
 
 Vue.config.productionTip = false
+
+// 挂载在vue实例化对象上
+Vue.prototype.$axios = axios
 
 // 移动端点击延迟处理
 fastClick.attach(document.body)
