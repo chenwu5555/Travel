@@ -1,56 +1,70 @@
 <template>
-    <div class="header">
-        <div class="header-left">
-            <div class="iconfont back-icon">&#xe604;</div>
-        </div>
-        <div class="header-input">
-            <span class="iconfont">&#xe616;</span>
-            输入城市/景点/游玩主题
-        </div>
-        <div class="header-right">
-            {{this.city}} 
-            <span class="iconfont arrow-icon">&#xe612;</span>
-        </div>
+  <div class="header">
+    <div class="header-left">
+      <div class="iconfont back-icon">&#xe604;</div>
     </div>
+    <div class="header-input">
+      <span class="iconfont">&#xe616;</span>
+      输入城市/景点/游玩主题
+    </div>
+    <router-link to="/city">
+      <div class="header-right">
+        {{ this.city }}
+        <span class="iconfont arrow-icon">&#xe612;</span>
+      </div>
+    </router-link>
+  </div>
 </template>
 
 <script>
 export default {
-    neme:"HomeHeader",
-    props:{
-        city:String
-    }
-}
+  neme: "HomeHeader",
+  props: {
+    city: String,
+  },
+};
 </script>
 
 <style  lang="stylus" scoped>
-// 引用颜色变量文件varibles.styl
-    @import "../../../assets/styles/varibles.styl"
-    .header
-        display:flex
-        line-height:.86rem
-        background:$bgColor
-        color:#fff
-        .header-left
-            width :0.64rem
-            float :left
-            .back-icon
-               text-align:center
-               font-size:.4rem
-        .header-input
-            flex: 1
-            line-height:.64rem
-            margin-top:.12rem
-            margin-left:.2rem
-            padding-left:.2rem
-            background:#fff
-            border-radius:.1rem
-            color:#ccc
-        .header-right
-            width :1.24rem
-            float :right
-            text-align:center
-            .arrow-icon
-               margin-left : -.15rem
-               font-size:.4rem
+@import '../../../assets/styles/varibles.styl';
+
+.header {
+  display: flex;
+  line-height: 0.86rem;
+  background: $bgColor;
+  color: #fff;
+
+  .header-left {
+    width: 0.64rem;
+    float: left;
+
+    .back-icon {
+      text-align: center;
+      font-size: 0.4rem;
+    }
+  }
+
+  .header-input {
+    flex: 1;
+    line-height: 0.64rem;
+    margin-top: 0.12rem;
+    margin-left: 0.2rem;
+    padding-left: 0.2rem;
+    background: #fff;
+    border-radius: 0.1rem;
+    color: #ccc;
+  }
+
+  .header-right {
+    width: 1.24rem;
+    float: right;
+    text-align: center;
+    color:#fff
+
+    .arrow-icon {
+      margin-left: -0.15rem;
+      font-size: 0.4rem;
+    }
+  }
+}
 </style>
