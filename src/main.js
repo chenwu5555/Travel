@@ -25,7 +25,7 @@ Vue.prototype.$axios = axios
 // 移动端点击延迟处理
 fastClick.attach(document.body)
 
-// 使用轮播图swiper插件
+//注册vue-awesome-swiper插件 使用轮播图swiper插件
 Vue.use(VueAwesomeSwiper)
 
 new Vue({
