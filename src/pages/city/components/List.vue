@@ -1,11 +1,12 @@
 <template>
-<!-- ref有两种作用：1：可以帮助我们获取到dom元素    2：用到组件上 -->
+  <!-- ref有两种作用：1：可以帮助我们获取到dom元素    2：用到组件上 -->
+  <!-- 使用better-scroll插件，需要放分散的div包裹起来，因为该插件只作用于wrap下面的子div有效 -->
   <div class="list" ref="wrapper">
-    <div class="wrapper" >
-      <!-- 地区创建 -->
+    <div>
+      <!-- 城市信息 -->
       <div class="area">
-        <!-- 标题 -->
-        <div class="title border-topbottom">您的位置</div>
+        <!-- 当前城市 -->
+        <div class="title border-topbottom">当前城市</div>
         <div class="buttom-list">
           <div class="buttom-wrap">
             <div class="buttom">北京</div>
@@ -13,55 +14,27 @@
         </div>
       </div>
       <div class="area">
+        <!-- 热门城市 -->
         <div class="title border-topbottom">热门城市</div>
         <div class="buttom-list">
-          <div class="buttom-wrap">
-            <div class="buttom">北京</div>
-          </div>
-          <div class="buttom-wrap">
-            <div class="buttom">北京</div>
-          </div>
-          <div class="buttom-wrap">
-            <div class="buttom">北京</div>
-          </div>
-          <div class="buttom-wrap">
-            <div class="buttom">北京</div>
-          </div>
-          <div class="buttom-wrap">
-            <div class="buttom">北京</div>
-          </div>
-          <div class="buttom-wrap">
-            <div class="buttom">北京</div>
-          </div>
-          <div class="buttom-wrap">
-            <div class="buttom">北京</div>
+          <div class="buttom-wrap" v-for="item of hotCities" :key="item.id">
+            <div class="buttom">{{ item.name }}</div>
           </div>
         </div>
       </div>
-      <div class="area">
-        <div class="title border-topbottom">A</div>
+      <!-- 城市列表 -->
+      <!-- 第一次循环得到首字母 -->
+      <div class="area" v-for="(item, key) of cities" :key="key">
+        <div class="title border-topbottom">{{ key }}</div>
+        <!-- 第二次循环出城市列表 -->
         <div class="item-list">
-          <div class="item border-bottom">阿拉善</div>
-          <div class="item border-bottom">阿拉善</div>
-          <div class="item border-bottom">阿拉善</div>
-          <div class="item border-bottom">阿拉善</div>
-          <div class="item border-bottom">阿拉善</div>
-        </div>
-        <div class="title border-topbottom">A</div>
-        <div class="item-list">
-          <div class="item border-bottom">阿拉善</div>
-          <div class="item border-bottom">阿拉善</div>
-          <div class="item border-bottom">阿拉善</div>
-          <div class="item border-bottom">阿拉善</div>
-          <div class="item border-bottom">阿拉善</div>
-        </div>
-        <div class="title border-topbottom">A</div>
-        <div class="item-list">
-          <div class="item border-bottom">阿拉善</div>
-          <div class="item border-bottom">阿拉善</div>
-          <div class="item border-bottom">阿拉善</div>
-          <div class="item border-bottom">阿拉善</div>
-          <div class="item border-bottom">阿拉善</div>
+          <div
+            class="item border-bottom"
+            v-for="inneritem of item"
+            :key="inneritem.id"
+          >
+            {{ inneritem.name }}
+          </div>
         </div>
       </div>
     </div>
@@ -70,11 +43,15 @@
 
 <script>
 // 引入better-scroll移动端滚动插件
-import BScroll from "better-scroll"
+import BScroll from "better-scroll";
 export default {
   name: "CityList",
+  props: {
+    hotCities: Array,
+    cities: Object,
+  },
 
-// 创建前可以用$nextTick()函数来延迟触发效果
+  // 创建前可以用$nextTick()函数来延迟触发效果
   // created(){
   //   this.$nextTick(()=>{
   //     this.scroll = new BScroll(this.$refs.wrapper)
@@ -82,9 +59,13 @@ export default {
   // }
 
   // 挂载前可以用mounted()  来触发效果
-  mounted(){
-    this.scroll = new BScroll(this.$refs.wrapper)
-  }
+  mounted() {
+    setTimeout(() => {
+      this.scroll = new BScroll(this.$refs.wrapper, {
+        click: true,
+      });
+    }, 100);
+  },
 };
 </script>
 

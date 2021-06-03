@@ -1,7 +1,13 @@
 <template>
   <div class="wrapper">
-      <swiper :options="swiperOptions" v-if="showSwiper">
-      <swiper-slide v-for="item of list" :key="item.id" >
+      <swiper 
+        :options="swiperOptions" 
+        v-if="showSwiper"
+      >
+      <swiper-slide 
+        v-for="item of list" 
+        :key="item.id" 
+      >
         <img  class="swiper-img" :src="item.imgUrl" alt="图片不见了">
       </swiper-slide>
       <!-- <swiper-slide>

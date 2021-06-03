@@ -1,7 +1,9 @@
 <template>
   <div>
     <div class="header">城市选择</div>
+    <!-- "/"回到了当前项目根目录页面 -->
     <router-link to="/">
+    <!-- class="iconfont" 引用了全局样式箭头图标 -->
       <div class="iconfont header-back">&#xe604;</div>
     </router-link>
   </div>
