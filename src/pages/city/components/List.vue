@@ -24,7 +24,11 @@
       </div>
       <!-- 城市列表 -->
       <!-- 第一次循环得到首字母 -->
-      <div class="area" v-for="(item, key) of cities" :key="key">
+      <div class="area"
+        v-for="(item, key) of cities" 
+        :key="key"
+        :ref="key"
+      >
         <div class="title border-topbottom">{{ key }}</div>
         <!-- 第二次循环出城市列表 -->
         <div class="item-list">
@@ -49,6 +53,7 @@ export default {
   props: {
     hotCities: Array,
     cities: Object,
+    letter:String,
   },
 
   // 创建前可以用$nextTick()函数来延迟触发效果
@@ -66,6 +71,21 @@ export default {
       });
     }, 100);
   },
+
+  // 监听letter的变化
+  watch: {
+    letter () {
+      if(this.letter){
+        // 获取到一个被点击的字母变量
+        const element = this.$refs[this.letter][0]
+        // 得到的是一个数组，所以必须要是[0]，因为$refs要用到的必须是一个dom元素或者dom选择器
+        // console.log(element)
+        // BScroll滚动插件中的方法
+        this.scroll.scrollToElement(element)
+      }
+      // console.log(this.letter)
+    }
+  }
 };
 </script>
 

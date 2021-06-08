@@ -5,9 +5,16 @@
     <!-- 城市搜索组件 -->
     <city-search></city-search>
     <!-- 热门城市信息 -->
-    <city-list :hotCities="hotCities" :cities="cities" ></city-list>、
+    <city-list 
+        :hotCities="hotCities" 
+        :cities="cities" 
+        :letter="letter"
+    ></city-list>、
     <!-- 城市列表选项 -->
-    <city-alphabet :cities="cities"></city-alphabet>
+    <city-alphabet 
+      :cities="cities"
+      @change="handerLetterChange"
+    ></city-alphabet>
   </div>
 </template>
 <script>
@@ -31,6 +38,7 @@ export default {
     return {
       hotCities: [],
       cities: {},
+      letter:''
     };
   },
   methods: {
@@ -52,6 +60,12 @@ export default {
       }
       console.log(res);
     },
+      
+    // 接受子组件Alphabet 传递过来的数据
+    handerLetterChange (letter) {
+      this.letter = letter
+      // console.log(letter)
+    }
   },
   // 生命周期钩子挂载在实例上
   mounted() {
