@@ -65,11 +65,9 @@ export default {
 
   // 挂载前可以用mounted()  来触发效果
   mounted() {
-    setTimeout(() => {
-      this.scroll = new BScroll(this.$refs.wrapper, {
-        click: true,
-      });
-    }, 100);
+     setTimeout(() => {
+       this.scroll = new BScroll(".list")
+     }, 100);
   },
 
   // 监听letter的变化
@@ -120,7 +118,7 @@ export default {
   left: 0;
 
   .title {
-    line-height: 0.44rem;
+    line-height: 0.6rem;
     background: #eee;
     padding-left: 0.2rem;
     color: #666;

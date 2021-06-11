@@ -3,7 +3,7 @@
     <!-- 头部城市选择组件 -->
     <city-header></city-header>
     <!-- 城市搜索组件 -->
-    <city-search></city-search>
+    <city-search :cities="cities"></city-search>
     <!-- 热门城市信息 -->
     <city-list 
         :hotCities="hotCities" 
@@ -57,6 +57,7 @@ export default {
         this.hotCities = data.hotCities;
         // 城市列表选项数据
         this.cities = data.cities;
+        // console.log(this.cities)
       }
       console.log(res);
     },
