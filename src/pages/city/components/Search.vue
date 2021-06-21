@@ -15,6 +15,7 @@
           class="search-item border-buttom"
           v-for="item in list"
           :key="item.id"
+          @click="handlecity(item.name)"
         >
           {{ item.name }}
         </li>
@@ -29,6 +30,8 @@
 <script>
 // 引入移动端滚动插件 better-scroll
 import BScroll from "better-scroll";
+// 引入vuex中的方法
+import { mapMutations } from "vuex";
 export default {
   name: "CitySearch",
   props: {
@@ -46,6 +49,20 @@ export default {
     nokeyword() {
       return !this.list.length;
     },
+  },
+  methods:{
+    handlecity (city) {
+      // 调用dispatch方法 定义一个change的方法，将city城市名称传递出去，传到actions中
+      // this.$store.dispatch("changeCity",city)
+
+      // 单一的数据时，可以不用actions来修改数据，直接用mutations
+      // this.$store.commit("changeCity",city)
+
+      this.changeCity(city)
+      // 点击切换城市之后，路由跳转到项目首页Header
+      this.$router.push("/")
+    },
+    ...mapMutations(["changeCity"])
   },
   // 监听输入框数据改变
   watch: {

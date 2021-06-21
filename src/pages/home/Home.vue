@@ -1,7 +1,7 @@
 <template>
     <div>
         <!-- 头部组件 -->
-       <home-header :city="city"></home-header>
+       <home-header></home-header>
        <!-- 轮播图组件 -->
        <home-swiper :list="swiperList"></home-swiper>
        <!-- 图标轮播组件 -->
@@ -35,7 +35,7 @@ export default {
     },
     data (){
         return {
-            city:"",
+            // city:"",
             swiperList:[],
             iconsList:[],
             recommendList:[],
@@ -55,7 +55,7 @@ export default {
             if(res.ret&&res.data){
                 const data = res.data
                 // 城市名称数据
-                this.city = data.city
+                // this.city = data.city
                 // 轮播图图片的数据
                 this.swiperList = data.swiperList,
                 // 小图标的数据

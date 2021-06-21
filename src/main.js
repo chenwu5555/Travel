@@ -5,7 +5,10 @@ import router from './router'
 import fastClick from "fastclick"
 // 引用轮播图插件 VueAwesomeSwiper
 import VueAwesomeSwiper from 'vue-awesome-swiper'
+
+// 引入store文件 里面是vuex插件
 import store from './store'
+
 // 引入清除默认样式的css文件  reset.css
 import "./assets/styles/reset.css"
 // 解决1像素边框的问题

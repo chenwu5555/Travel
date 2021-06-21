@@ -9,7 +9,7 @@
         <div class="title border-topbottom">当前城市</div>
         <div class="buttom-list">
           <div class="buttom-wrap">
-            <div class="buttom">北京</div>
+            <div class="buttom">{{this.currentCity}}</div>
           </div>
         </div>
       </div>
@@ -17,8 +17,15 @@
         <!-- 热门城市 -->
         <div class="title border-topbottom">热门城市</div>
         <div class="buttom-list">
-          <div class="buttom-wrap" v-for="item of hotCities" :key="item.id">
-            <div class="buttom">{{ item.name }}</div>
+          <div 
+              class="buttom-wrap" 
+              v-for="item of hotCities"
+              :key="item.id"
+          >
+            <div 
+                class="buttom"
+                @click="handlecity(item.name)"
+            >   {{ item.name }}</div>
           </div>
         </div>
       </div>
@@ -36,6 +43,7 @@
             class="item border-bottom"
             v-for="inneritem of item"
             :key="inneritem.id"
+             @click="handlecity(inneritem.name)"
           >
             {{ inneritem.name }}
           </div>
@@ -48,12 +56,23 @@
 <script>
 // 引入better-scroll移动端滚动插件
 import BScroll from "better-scroll";
+// 用vuex的方法
+import { mapState,mapMutations } from "vuex";
+
 export default {
   name: "CityList",
   props: {
     hotCities: Array,
     cities: Object,
     letter:String,
+  },
+
+  computed:{
+    // 扩展运算符
+    // 把vuex里面的数据映射到组件的computed计算属性里面去
+    ...mapState({
+      currentCity:"city"
+    })
   },
 
   // 创建前可以用$nextTick()函数来延迟触发效果
@@ -68,6 +87,18 @@ export default {
      setTimeout(() => {
        this.scroll = new BScroll(".list")
      }, 100);
+  },
+
+  // vuex状态管理插件方法
+  methods:{
+    handlecity (city) {
+      // this.$store.commit("changeCity",city)
+      // 点击切换城市之后，路由跳转到项目首页Header
+       this.$router.push("/")
+
+       this.changeCity(city)
+    },
+    ...mapMutations(["changeCity"])
   },
 
   // 监听letter的变化
