@@ -4,8 +4,12 @@
       <!-- <router-link to="/">Home</router-link> |
       <router-link to="/about">About</router-link> -->
     </div>
-    <!-- 显示的是当前路由所对应的内容 -->
-    <router-view/>
+    <!-- keep-alive来缓存组件，防止二次渲染，这样会大大的节省性能 -->
+    <keep-alive exclude="Detail">
+          <!-- 显示的是当前路由所对应的内容 -->
+          <router-view/>
+    </keep-alive>
+
   </div>
 </template>
 

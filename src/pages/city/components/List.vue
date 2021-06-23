@@ -93,10 +93,10 @@ export default {
   methods:{
     handlecity (city) {
       // this.$store.commit("changeCity",city)
+      this.changeCity(city)
+      
       // 点击切换城市之后，路由跳转到项目首页Header
        this.$router.push("/")
-
-       this.changeCity(city)
     },
     ...mapMutations(["changeCity"])
   },

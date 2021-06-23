@@ -24,6 +24,9 @@ import HomeIcons from "./components/Icons.vue"
 import HomeRecommend from "./components/Recommend.vue"
 // 引入周末去哪儿组件
 import HomeWeekend from "./components/Weekend.vue"
+
+// 引入vuex的方法
+import { mapState } from "vuex";
 export default {
     neme:"Home",
     components:{
@@ -39,13 +42,22 @@ export default {
             swiperList:[],
             iconsList:[],
             recommendList:[],
-            weekendList:[]
+            weekendList:[],
+            // 定义一个缓存上一个城市的变量
+            lastCity:""
         }
     },
+    computed:{
+        // 扩展运算符
+        // 把vuex里面的数据映射到组件的computed计算属性里面去
+        ...mapState(["city"])
+    }
+    ,
     methods:{
         getHomeInfo(){
             // 发送 axsoi 请求数据
-            this.$axios.get('/api/index.json')
+            console.log(this.city,"随便");
+            this.$axios.get(`/api/index.json?city=${this.city}`)
                .then(this.getHomeInfoSucc)
         },
         // ajax获取到的数据
@@ -56,6 +68,9 @@ export default {
                 const data = res.data
                 // 城市名称数据
                 // this.city = data.city
+                console.log(this.city);
+                console.log("yiasnofaofo");
+                console.log(data);
                 // 轮播图图片的数据
                 this.swiperList = data.swiperList,
                 // 小图标的数据
@@ -70,7 +85,20 @@ export default {
     },
     // 生命周期mounted 挂载完成之前的钩子
     mounted(){
+        // 保存上一次城市的名称
+        console.log(this.city);
+        this.lastCity = this.city
         this.getHomeInfo()
+    },
+    // 新增的生命周期函数 需要在使用keep-alive缓存的组件时激活使用
+    activated(){
+        // 判断当前定位所在的城市，是否与之前操作的城市一致，如果不一致，则返回重新请求页面
+        if (this.lastCity !== this.city) {
+            // 继续保存城市名称
+            this.lastCity = this.city
+            console.log(this.city);
+            this.getHomeInfo()
+        }
     }
 }
 </script>
