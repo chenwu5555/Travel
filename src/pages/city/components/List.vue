@@ -86,7 +86,7 @@ export default {
   mounted() {
      setTimeout(() => {
        this.scroll = new BScroll(".list")
-     }, 100);
+     }, 30);
   },
 
   // vuex状态管理插件方法
