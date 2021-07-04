@@ -39,6 +39,7 @@ export default {
     methods:{
         // handelScroll() 获取到滚动条距离document顶部的距离高度
         handelScroll () {
+          // console.log("scroll");
             const top = document.documentElement.scrollTop
             if(top>60 ){
               // opacity的值永远在0-1之间
@@ -57,6 +58,11 @@ export default {
     // 在使用keep-alive标签中有效，每次进入都会执行钩子中的函数,加载缓存
     activated (){
         window.addEventListener("scroll",this.handelScroll)
+    },
+    // deactivated  生命周期函数 activdted退出时，触发，再次进入时，只会触发activated
+    deactivated () {
+      // 当退出这个页面时，退出activated时，要解绑全局下的事件函数
+      window.removeEventListener("scroll",this.handelScroll)
     }
     
 }
